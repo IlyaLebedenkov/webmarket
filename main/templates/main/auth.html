@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-6">
+        <img src= "{% static 'main/logo_1.jpg'%}"alt="Market logo" class="w-100 img-fluid" >
+    </div>
+    <div class="col-sm-6 mx-auto my-auto">
+        <h1 class="text-center display-4 mb-2">Авторизация</h1>
+        <form class="form"  method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Имя пользователя" class="form-control d-block mx-auto mt-2" style="width:40%">
+            <input type="password" name="pass" placeholder="Пароль" class="form-control d-block mx-auto mt-2" style="width:40%">
+            <input type="submit" value="Логин" class="btn btn-primary w-60 mt-2 d-block mx-auto">
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

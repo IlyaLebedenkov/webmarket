@@ -1,0 +1,17 @@
+{% extends "main/Base.html" %}
+{% load tags %}
+{% load static %}
+{% block title %} Korzina {% endblock %}
+
+{% block content %}
+
+
+    <ul>
+        {% for id in request.session.cart %}
+            <li>{% my_tag id as e %} {{ e }}<br><a href="{% url 'main:delete_cart_item' id %}">Удалить</a> </li>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+

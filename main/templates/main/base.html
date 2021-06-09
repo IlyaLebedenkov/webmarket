@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load tags %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %} {% endblock %} </title>
+
+</head>
+<body class="container">
+<nav class="navbar navbar-expand-sm bg-light">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'main:index_page' %}">Главная </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'main:auth_page' %}">Авторизация </a>
+    </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'main:korzina' %}">Корзина <span class="badge badge-pill badge-danger"></span></a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+      <a class="nav-link" href="{% url 'main:logout_view' %}">Выйти </a>
+    </li>
+      {% endif %}
+      <li class="nav-item">
+          {% if not request.user.is_authenticated %}
+          <a class="nav-link" href="{% url 'main:register' %}">Регистрация </a>
+          {% endif %}
+    </li>
+
+
+  </ul>
+</nav>
+    {% block content %}
+
+    {% endblock %}
+
+<hr>
+
+
+
+</body>
+</html>

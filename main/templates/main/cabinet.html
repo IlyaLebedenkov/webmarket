@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Cabinet
+{% endblock %}
+
+{% block content %}
+<h6>Вы вошли в личный кабинет.Здесь данные вашего пользователя.</h6>
+<ul class="navbar-nav">
+    <li class="nav-item">
+     <h6>Ваш логин: {{ request.user.username}}</h6>
+    </li>
+    <li class="nav-item">
+   <h6>Ваша почта:  {{ request.user.email}}</h6>
+    </li>
+      <li class="nav-item">
+          <h6>Ваше Имя:   {{ request.user.first_name }} </h6>
+      </li>
+
+      <li class="nav-item">
+     <h6>Вашa Фамилия: {{ request.user.last_name }}</h6>
+    </li>
+</ul>
+<h6>Хороших покупок :) </h6>
+      {% endblock %}

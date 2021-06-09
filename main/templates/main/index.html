@@ -1,0 +1,74 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+index page
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center display-4">Продукты</h1>
+
+                {% if ps %}
+                 {% for p in ps %}
+                  <div class="card">
+                      <div class="card-body">
+                          <h1 class="card-title">{{p.name}}</h1>
+                          <img src="{{MEDIA_URL}}{{p.img}}" alt="Image" class="img-fluid w-5 ">
+                          <table class="table">
+                              <tbody>
+                              <tr>
+                                  <td>Описание</td>
+                                  <td>{{p.description}}</td>
+                              </tr>
+                               <tr>
+                                  <td>Цена</td>
+                                  <td>{{ p.cost }} тг/{{p.volume_type.name }}</td>
+                              </tr>
+                               <tr>
+                                  <td>Есть в наличии</td>
+                                  <td>{{ p.available_ammount }}</td>
+                              </tr>
+                              <tr>
+                                  <td>Подробнее:</td>
+                                  <td><a href="{% url 'main:detail_page' p.pk %}">Нажать здесь</a></td>
+                              </tr>
+                              <tr>
+                                  <td>Купить сейчас</td>
+                                  {% if request.user.is_authenticated %}
+                                  <td> <a href="{% url 'main:pay_cart' %}">Нажать здесь</a></td>
+                                  {% else %}
+                                   <td> Авторизуйтесь или зарегестрируйтесь</td>
+                                  {% endif %}
+
+                              </tr>
+                              <tr>
+                                  <td>Добавьть в корзину</td>
+                                  {% if request.user.is_authenticated %}
+                                  <td> <a href="{% url 'main:add_cart' p.pk %}">Нажать здесь</a></td>
+                                   {% else %}
+                                  <td> Авторизуйтесь или зарегестрируйтесь</td>
+                                  {% endif %}
+                              </tr>
+                                </tbody>
+
+                          </table>
+                      </div>
+                  </div>
+                 {% endfor %}
+                {% else %}
+                 <p class="text-center">Пока что продуктов нет</p>
+                {% endif %}
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
